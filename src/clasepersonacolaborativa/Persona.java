@@ -43,6 +43,33 @@ import java.time.LocalDate;
             this.fechaNacimiento = null;
         }
     }
+      public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getFechaNacimiento(char separador) {
+        String fecha = null;
+
+        if (separador != '-' && separador != '/') {
+            throw new IllegalArgumentException();
+
+        } else {
+            if (this.fechaNacimiento != null) {
+                fecha = String.format("%02d%c%02d%c%04d", this.fechaNacimiento.getDayOfMonth(), separador,
+                        this.fechaNacimiento.getMonthValue(), separador, this.fechaNacimiento.getYear());
+            }
+            return fecha;
+        }
+
+    }
+
+    public String getFechaNacimiento() {
+        return getFechaNacimiento('-');
+    }
 
 private LocalDate generarFecha(String fechaNacimiento) {
         LocalDate fecha;
